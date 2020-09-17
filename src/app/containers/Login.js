@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Image, View, StyleSheet, KeyboardAvoidingView, Text } from 'react-native'
-import { Button, TextInput, useTheme } from 'react-native-paper'
+import { Button, TextInput } from 'react-native-paper'
 
 const initialState = {
   text: '',
