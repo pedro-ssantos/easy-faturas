@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Image, View, StyleSheet, KeyboardAvoidingView, Text } from 'react-native'
 import { Appbar, Button, TextInput } from 'react-native-paper'
+import DispatchContext from '../contexts/DispatchContext'
 
 const initialState = {
   numero: '',
@@ -9,8 +10,9 @@ const initialState = {
   nome: ''
 }
 
-export default function CartaoCreate() {
+export default function CartaoCreate({ navigation }) {
   const [cartao, setCartao] = useState(initialState)
+  const appDispatch = useContext(DispatchContext)
 
   const numeroHandler = (value) => setCartao(prevState => ({ ...prevState, numero: value }))
   const validadeHandler = (value) => setCartao(prevState => ({ ...prevState, validade: value }))
@@ -18,7 +20,11 @@ export default function CartaoCreate() {
   const nomeHandler = (value) => setCartao(prevState => ({ ...prevState, nome: value }))
 
   const handleSave = () => {
-    console.log(cartao)
+    appDispatch({
+      type: 'addCartao',
+      value: cartao
+    })
+    navigation.goBack()
   }
 
   return (
