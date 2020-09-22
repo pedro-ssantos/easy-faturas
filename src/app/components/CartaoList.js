@@ -8,7 +8,7 @@ const FaturaRoute = () => <Text>Albums</Text>;
 
 const CartaoRoute = () => <Text>Recents</Text>;
 
-export default function Dashboard() {
+export default function CartaoList({ navigation }) {
 
   const [index, setIndex] = React.useState(2);
   const [routes] = React.useState([
@@ -45,12 +45,6 @@ export default function Dashboard() {
 
   return (
     <>
-      <View>
-        <Appbar>
-          <Appbar.Content title='Pedro' />
-          <Appbar.Action icon="exit-to-app" onPress={() => { }} />
-        </Appbar>
-      </View>
       <ScrollView style={[styles.container]}>
         <List.Section>
           <List.Item
@@ -71,15 +65,7 @@ export default function Dashboard() {
         <FAB
           style={styles.fab}
           label="Adicionar Cartão"
-          onPress={() => { }}
-        />
-      </View>
-      <View>
-        <BottomNavigation
-          navigationState={{ index, routes }}
-          onIndexChange={setIndex}
-          renderScene={renderScene}
-          sceneAnimationEnabled={false}
+          onPress={() => navigation.navigate('CartaoCreate')}
         />
       </View>
     </>

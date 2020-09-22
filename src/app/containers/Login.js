@@ -7,7 +7,7 @@ const initialState = {
   maxLengthName: '',
 }
 
-export default function Login() {
+export default function Login({ navigation }) {
 
   return (
     <>
@@ -32,10 +32,10 @@ export default function Login() {
             placeholder="*******"
             onChangeText={() => { }}
           />
-          <Button mode="contained" onPress={() => { }} style={styles.button}>
+          <Button mode="contained" onPress={() => { }} style={styles.button} onPress={() => navigation.navigate('dashboard')}>
             Entrar
         </Button>
-          <Button onPress={() => { }} style={styles.button}>
+          <Button onPress={() => { }} style={styles.button} onPress={() => navigation.navigate('register')}>
             Registrar
         </Button>
         </View>

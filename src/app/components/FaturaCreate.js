@@ -6,38 +6,27 @@ export default function Register() {
 
   return (
     <>
-      <Appbar.Header>
-        <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="Novo Cartão" />
-      </Appbar.Header>
       <KeyboardAvoidingView style={styles.background}>
         <View style={styles.container}>
           <TextInput
             mode="outlined"
             style={styles.inputContainerStyle}
-            label="Numero"
-            placeholder="1234 1234 1234 1234"
+            label="Cartão"
+            placeholder="Operadora"
             onChangeText={() => { }}
           />
           <TextInput
             mode="outlined"
             style={styles.inputContainerStyle}
-            label="Validade"
+            label="Vencimento"
             placeholder="dd/mm/aaaa"
             onChangeText={() => { }}
           />
           <TextInput
             mode="outlined"
             style={styles.inputContainerStyle}
-            label="CV"
-            placeholder="000"
-            onChangeText={() => { }}
-          />
-          <TextInput
-            mode="outlined"
-            style={styles.inputContainerStyle}
-            label="Nome do Titular"
-            placeholder="Nome"
+            label="Valor"
+            placeholder="R$ 000,00"
             onChangeText={() => { }}
           />
           <Button mode="contained" onPress={() => { }} style={styles.button}>

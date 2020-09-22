@@ -1,49 +1,43 @@
 import * as React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { Appbar, BottomNavigation, Card, Divider, FAB, Text, Title, Paragraph, } from 'react-native-paper';
+import { Appbar, BottomNavigation, Card, Divider, Text, Title, Paragraph, } from 'react-native-paper';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { ScrollView, View } from 'react-native';
 
-const HomeRoute = () => <Text>Music</Text>;
-
-const FaturaRoute = () => <Text>Albums</Text>;
-
-const CartaoRoute = () => <Text>Recents</Text>;
-
-export default function Dashboard() {
-
-  const [index, setIndex] = React.useState(1);
-  const [routes] = React.useState([
-    { key: 'home', title: 'Home', icon: 'home' },
-    { key: 'fatura', title: 'Fatura', icon: 'list-alt' },
-    { key: 'cartao', title: 'Cartão', icon: 'credit-card-outline' },
-  ]);
-
-  const renderScene = BottomNavigation.SceneMap({
-    home: HomeRoute,
-    fatura: FaturaRoute,
-    cartao: CartaoRoute,
-  });
-
-  const styles = StyleSheet.create({
-    fab: {
-      position: 'absolute',
-      margin: 16,
-      bottom: 0,
-    },
-    ContainerFAB: {
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-  })
-
+export default function Home() {
   return (
     <>
-      <View>
-        <Appbar>
-          <Appbar.Content title='Pedro' />
-          <Appbar.Action icon="exit-to-app" onPress={() => { }} />
-        </Appbar>
-      </View>
-      <ScrollView >
+      <ScrollView>
+        <Card>
+          <Card.Title
+            title="70"
+            subtitle="Faturas"
+            right={(props) => (<Card.Content>
+              <Title>R$ 888.88</Title>
+              <Paragraph>Debito Total</Paragraph>
+            </Card.Content>)}
+          />
+        </Card>
+        <Card>
+          <Card.Title
+            title="30"
+            subtitle="Faturas Pagas"
+            right={(props) => (<Card.Content>
+              <Title>R$ 888.88</Title>
+              <Paragraph>Total</Paragraph>
+            </Card.Content>)}
+          />
+        </Card>
+        <Card>
+          <Card.Title
+            title="40"
+            subtitle="Faturas Pedentes"
+            right={(props) => (<Card.Content>
+              <Title>R$ 888.88</Title>
+              <Paragraph>Total</Paragraph>
+            </Card.Content>)}
+          />
+        </Card>
+        <Divider />
         <Card>
           <Card.Title
             title="Fatura 1"
@@ -81,28 +75,21 @@ export default function Dashboard() {
             </Card.Content>)}
           />
           <Card.Title
-            title="Fatura 1"
+            title="Fatura 5"
             subtitle="Venc: dd/mm"
             right={(props) => (<Card.Content>
               <Title>R$ 888.88</Title>
             </Card.Content>)}
           />
           <Card.Title
-            title="Fatura 2"
+            title="Fatura 5"
             subtitle="Venc: dd/mm"
             right={(props) => (<Card.Content>
               <Title>R$ 888.88</Title>
             </Card.Content>)}
           />
           <Card.Title
-            title="Fatura 3"
-            subtitle="Venc: dd/mm"
-            right={(props) => (<Card.Content>
-              <Title>R$ 888.88</Title>
-            </Card.Content>)}
-          />
-          <Card.Title
-            title="Fatura 4"
+            title="Fatura 5"
             subtitle="Venc: dd/mm"
             right={(props) => (<Card.Content>
               <Title>R$ 888.88</Title>
@@ -117,21 +104,6 @@ export default function Dashboard() {
           />
         </Card>
       </ScrollView>
-      <View style={styles.ContainerFAB}>
-        <FAB
-          style={styles.fab}
-          label="Adicionar Fatura"
-          onPress={() => { }}
-        />
-      </View>
-      <View>
-        <BottomNavigation
-          navigationState={{ index, routes }}
-          onIndexChange={setIndex}
-          renderScene={renderScene}
-          sceneAnimationEnabled={false}
-        />
-      </View>
     </>
   )
 }

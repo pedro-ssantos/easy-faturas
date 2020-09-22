@@ -2,35 +2,38 @@ import * as React from 'react'
 import { Image, View, StyleSheet, KeyboardAvoidingView, Text } from 'react-native'
 import { Appbar, Button, TextInput } from 'react-native-paper'
 
-export default function Register() {
+export default function CartaoCreate() {
 
   return (
     <>
-      <Appbar.Header>
-        <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="Nova Fatura" />
-      </Appbar.Header>
       <KeyboardAvoidingView style={styles.background}>
         <View style={styles.container}>
           <TextInput
             mode="outlined"
             style={styles.inputContainerStyle}
-            label="Cartão"
-            placeholder="Operadora"
+            label="Numero"
+            placeholder="1234 1234 1234 1234"
             onChangeText={() => { }}
           />
           <TextInput
             mode="outlined"
             style={styles.inputContainerStyle}
-            label="Vencimento"
+            label="Validade"
             placeholder="dd/mm/aaaa"
             onChangeText={() => { }}
           />
           <TextInput
             mode="outlined"
             style={styles.inputContainerStyle}
-            label="Valor"
-            placeholder="R$ 000,00"
+            label="CV"
+            placeholder="000"
+            onChangeText={() => { }}
+          />
+          <TextInput
+            mode="outlined"
+            style={styles.inputContainerStyle}
+            label="Nome do Titular"
+            placeholder="Nome"
             onChangeText={() => { }}
           />
           <Button mode="contained" onPress={() => { }} style={styles.button}>

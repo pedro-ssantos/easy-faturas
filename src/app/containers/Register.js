@@ -7,7 +7,7 @@ const initialState = {
   maxLengthName: '',
 }
 
-export default function Register() {
+export default function Register({ navigation }) {
 
   return (
     <>
