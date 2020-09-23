@@ -9,12 +9,12 @@ export default function Register({ navigation }) {
 
   /**
    * Cadastro 
-POST /api/projeto/cadastro 
-● Nome 
-● Cel 
-● Email 
-● Senha 
-● CPF 
+   * POST /api/projeto/cadastro 
+   *  ● Nome 
+   *  ● Cel 
+   *  ● Email 
+   *  ● Senha 
+   *  ● CPF 
    */
   async function handleSignUp() {
     const response = await apiAuth.post('/api/projeto/cadastro', {
