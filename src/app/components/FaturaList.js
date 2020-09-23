@@ -1,27 +1,11 @@
-import * as React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { Appbar, BottomNavigation, Card, Divider, FAB, Text, Title, Paragraph, } from 'react-native-paper';
+import React, { useContext } from 'react';
+import { ScrollView, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Card, FAB, Title, } from 'react-native-paper';
 
-const HomeRoute = () => <Text>Music</Text>;
-
-const FaturaRoute = () => <Text>Albums</Text>;
-
-const CartaoRoute = () => <Text>Recents</Text>;
+import AppState from '../contexts/StateContext'
 
 export default function FaturaList({ navigation }) {
-
-  const [index, setIndex] = React.useState(1);
-  const [routes] = React.useState([
-    { key: 'home', title: 'Home', icon: 'home' },
-    { key: 'fatura', title: 'Fatura', icon: 'list-alt' },
-    { key: 'cartao', title: 'Cartão', icon: 'credit-card-outline' },
-  ]);
-
-  const renderScene = BottomNavigation.SceneMap({
-    home: HomeRoute,
-    fatura: FaturaRoute,
-    cartao: CartaoRoute,
-  });
+  const appState = useContext(AppState)
 
   const styles = StyleSheet.create({
     fab: {
@@ -39,76 +23,23 @@ export default function FaturaList({ navigation }) {
     <>
       <ScrollView >
         <Card>
-          <Card.Title
-            title="Fatura 1"
-            subtitle="Venc: dd/mm"
-            right={(props) => (<Card.Content>
-              <Title>R$ 888.88</Title>
-            </Card.Content>)}
-          />
-          <Card.Title
-            title="Fatura 2"
-            subtitle="Venc: dd/mm"
-            right={(props) => (<Card.Content>
-              <Title>R$ 888.88</Title>
-            </Card.Content>)}
-          />
-          <Card.Title
-            title="Fatura 3"
-            subtitle="Venc: dd/mm"
-            right={(props) => (<Card.Content>
-              <Title>R$ 888.88</Title>
-            </Card.Content>)}
-          />
-          <Card.Title
-            title="Fatura 4"
-            subtitle="Venc: dd/mm"
-            right={(props) => (<Card.Content>
-              <Title>R$ 888.88</Title>
-            </Card.Content>)}
-          />
-          <Card.Title
-            title="Fatura 5"
-            subtitle="Venc: dd/mm"
-            right={(props) => (<Card.Content>
-              <Title>R$ 888.88</Title>
-            </Card.Content>)}
-          />
-          <Card.Title
-            title="Fatura 1"
-            subtitle="Venc: dd/mm"
-            right={(props) => (<Card.Content>
-              <Title>R$ 888.88</Title>
-            </Card.Content>)}
-          />
-          <Card.Title
-            title="Fatura 2"
-            subtitle="Venc: dd/mm"
-            right={(props) => (<Card.Content>
-              <Title>R$ 888.88</Title>
-            </Card.Content>)}
-          />
-          <Card.Title
-            title="Fatura 3"
-            subtitle="Venc: dd/mm"
-            right={(props) => (<Card.Content>
-              <Title>R$ 888.88</Title>
-            </Card.Content>)}
-          />
-          <Card.Title
-            title="Fatura 4"
-            subtitle="Venc: dd/mm"
-            right={(props) => (<Card.Content>
-              <Title>R$ 888.88</Title>
-            </Card.Content>)}
-          />
-          <Card.Title
-            title="Fatura 5"
-            subtitle="Venc: dd/mm"
-            right={(props) => (<Card.Content>
-              <Title>R$ 888.88</Title>
-            </Card.Content>)}
-          />
+          {appState.faturas.map(fatura => {
+            <TouchableOpacity onPress={() => navigation.navigate('FaturaEdit',
+              {
+                vencimento: fatura.vencimento,
+                id: fatura.id,
+                paga: fatura.paga,
+                valor: fatura.valor
+              })}>
+              <Card.Title
+                title={fatura.cartao}
+                subtitle={fatura.vencimento}
+                right={(props) => (<Card.Content>
+                  <Title>{fatura.valor}</Title>
+                </Card.Content>)}
+              />
+            </TouchableOpacity>
+          })}
         </Card>
       </ScrollView>
       <View style={styles.ContainerFAB}>

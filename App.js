@@ -51,6 +51,5 @@ export default function App() {
         </NavigationContainer>
       </DispatchContext.Provider>
     </StateContext.Provider>
-
-  );
+  )
 }

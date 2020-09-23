@@ -1,8 +1,31 @@
-import * as React from 'react'
+import React, { useState, useContext } from 'react'
 import { Image, View, StyleSheet, KeyboardAvoidingView, Text } from 'react-native'
 import { Appbar, Button, TextInput } from 'react-native-paper'
 
+import AppDispatch from '../contexts/DispatchContext'
+
+const initialState = {
+  cartao: '',
+  vencimento: '',
+  valor: '',
+  paga: false
+}
+
 export default function Register() {
+  const [fatura, setFatura] = useState(initialState)
+  const appDispatch = useContext(AppDispatch)
+
+  const cartaoHandler = (value) => setFatura(prevState => ({ ...fatura, cartao: value }))
+  const vencimentoHandler = (value) => setFatura(prevState => ({ ...fatura, vencimento: value }))
+  const valorHandler = (value) => setFatura(prevState => ({ ...fatura, valor: value }))
+
+  const saveHandler = () => {
+    appDispatch({
+      type: 'addFatura',
+      value: fatura
+    })
+    navigation.goBack()
+  }
 
   return (
     <>
@@ -13,23 +36,23 @@ export default function Register() {
             style={styles.inputContainerStyle}
             label="Cartão"
             placeholder="Operadora"
-            onChangeText={() => { }}
+            onChangeText={cartaoHandler}
           />
           <TextInput
             mode="outlined"
             style={styles.inputContainerStyle}
             label="Vencimento"
             placeholder="dd/mm/aaaa"
-            onChangeText={() => { }}
+            onChangeText={vencimentoHandler}
           />
           <TextInput
             mode="outlined"
             style={styles.inputContainerStyle}
             label="Valor"
             placeholder="R$ 000,00"
-            onChangeText={() => { }}
+            onChangeText={valorHandler}
           />
-          <Button mode="contained" onPress={() => { }} style={styles.button}>
+          <Button mode="contained" onPress={saveHandler} style={styles.button}>
             SALVAR
           </Button>
         </View>

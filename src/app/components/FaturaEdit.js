@@ -1,22 +1,53 @@
-import * as React from 'react'
-import { Image, View, StyleSheet, KeyboardAvoidingView } from 'react-native'
-import { Appbar, Button, Checkbox, Paragraph, TextInput, TouchableRipple } from 'react-native-paper'
+import React, { useContext, useState, useEffect } from 'react'
+import { View, StyleSheet, KeyboardAvoidingView } from 'react-native'
+import { Button, Checkbox, Paragraph, TextInput, TouchableRipple } from 'react-native-paper'
 
-export default function Register() {
+import AppDispatch from '../contexts/DispatchContext'
+
+const initialState = {
+  cartao: '',
+  vencimento: '',
+  valor: '',
+  paga: false
+}
+
+export default function Register({ route }) {
+  const [fatura, setFatura] = useState(initialState)
+  const appDispatch = useContext(AppDispatch)
+
+  const vencimentoHandler = (value) => setFatura(prevState => ({ ...prevState, vencimento: value }))
+  const pagaHandler = () => setFatura(prevState => ({ ...prevState, paga: !prevState.paga }))
+
+  const handleSave = () => {
+    appDispatch({
+      type: 'editFatura',
+      value: fatura
+    })
+    navigation.goBack()
+  }
+
+  const handleDelete = () => {
+    appDispatch({
+      type: 'deleteFatura',
+      value: fatura
+    })
+    navigation.goBack()
+  }
+
+  useEffect(() => {
+    const { id, vencimento, paga, valor } = route.params
+    setFatura(prevState => ({ ...prevState, vencimento: vencimento, id: id, paga: paga, valor: valor }))
+  }, [])
 
   return (
     <>
-      <Appbar.Header>
-        <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="Nova Fatura" />
-      </Appbar.Header>
       <KeyboardAvoidingView style={styles.background}>
         <View style={styles.container}>
           <TouchableRipple onPress={() => setCheckedNormal(!checkedNormal)}>
             <View style={styles.row}>
               <Paragraph>Pagar Fatura</Paragraph>
               <View pointerEvents="none">
-                <Checkbox status={'unchecked'} />
+                <Checkbox status={paga ? 'checked' : 'unchecked'} onValueChange={pagaHandler} />
               </View>
             </View>
           </TouchableRipple>
@@ -25,12 +56,13 @@ export default function Register() {
             style={styles.inputContainerStyle}
             label="Vencimento"
             placeholder="dd/mm/aaaa"
-            onChangeText={() => { }}
+            onChangeText={vencimentoHandler}
+            value={fatura.vencimento}
           />
-          <Button mode="contained" onPress={() => { }} style={styles.button}>
+          <Button mode="contained" onPress={handleSave} style={styles.button}>
             Salvar
           </Button>
-          <Button mode="contained" onPress={() => { }} style={styles.button} color="#B00020">
+          <Button mode="contained" onPress={handleDelete} style={styles.button} color="#B00020">
             Excluir
           </Button>
         </View>
