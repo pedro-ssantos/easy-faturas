@@ -1,13 +1,26 @@
 import * as React from 'react'
-import { Image, View, StyleSheet, KeyboardAvoidingView, Text } from 'react-native'
+import { View, StyleSheet, KeyboardAvoidingView } from 'react-native'
 import { Appbar, Button, TextInput } from 'react-native-paper'
+import apiAuth from '../api/apiAuth'
 
-const initialState = {
-  text: '',
-  maxLengthName: '',
-}
+import apiService from '../api/apiAuth'
 
 export default function Register({ navigation }) {
+
+  /**
+   * Cadastro 
+POST /api/projeto/cadastro 
+● Nome 
+● Cel 
+● Email 
+● Senha 
+● CPF 
+   */
+  async function handleSignUp() {
+    const response = await apiAuth.post('/api/projeto/cadastro', {
+
+    })
+  }
 
   return (
     <>
