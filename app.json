@@ -10,15 +10,21 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "ios": {
+      "bundleIdentifier": "com.psant.easyfaturas",
+      "buildNumber": "1.0.0",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.psant.easyfaturas",
+      "versionCode": 1
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
     "web": {
       "favicon": "./assets/favicon.png"
     }

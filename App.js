@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { useImmerReducer } from 'use-immer'
+import * as firebase from 'firebase';
 
 import RootStackScreen from './src/app/navigation/RootStackScreen'
 
